@@ -1,5 +1,6 @@
 var currentDay = $('#currentDay');
-var blocksContainer = $('blocksContainer');
+var blocksContainer = $('.time-block');
+var saveBtn = $('.saveBtn');
 var data = [];
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
@@ -8,7 +9,6 @@ var data = [];
 $(function () {
   displayTime();
   setInterval(displayTime, 1000);
-  
   readFromStorage();
   
   // TODO: Add a listener for click events on the save button. This code should
@@ -18,34 +18,16 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   
-  //event listener for the start button in view page
-  function saveBtnlistener(){
-  window.addEventListener("click", e => 
-  {
-    //get the parent element of the clicked element
-    var element = e.target;
+  //event listener for the save button in view page
+ saveBtn.on('click', function () {
     
-    //get the parent element of the parent element
-  
-    //confirm that the clicked object was a save button
-    if (element.classList.contains("saveBtn")) 
-    {
-      //get the id of the parent element
-      var timeBlcokId = element.parentElement.id;
-      var newUserInput = element.parentElement.querySelector("textarea").value;
-      
-      
-      data.array.forEach(element => {
-        if(element.hour === timeBlcokId)
-        {
-          element.userInput = newUserInput;
-        }
-        localStorage.setItem("data", JSON.stringify(data));
-      });
-    }
-
+    //get the parent element of the clicked element
+    var hour = $(this).parent().attr("id");
+    var input = $(this).siblings("textarea").val();
+        
+    saveTo(hour, input);
   });
-};
+
 
 
 
@@ -55,13 +37,21 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   // 
-  // function checkTime()
-  //   {
-  //     for(var i=0; i<8;i++)
-  //     {
-  //        if(dayjs().format(hh) === 
-  //     }
-  //   };
+
+  blocksContainer.each(function () {
+    var hour = $(this).attr("id").split('-')[1];
+    var currentHour = dayjs().format("HH");
+
+    if (hour < currentHour) 
+    {
+      $(this).addClass("past");
+    }
+    else if (hour == currentHour) {
+      $(this).addClass("present");
+    } else {
+      $(this).addClass("future");
+    }
+  });
 
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding userInputarea elements. HINT: How can the id
