@@ -22,13 +22,20 @@ $(function () {
  saveBtn.on('click', function () {
     
     //get the parent element of the clicked element
-    var hour = $(this).parent().attr("id");
-    var input = $(this).siblings("textarea").val();
-        
-    saveTo(hour, input);
+    var saveBtnHour = $(this).parent().attr("id").split("-")[1];
+    var userInput = $(this).siblings("textarea").val();
+    // Check if an object with the same hour already exists in the data array
+    var existingObj = data.find(obj => obj.hour === saveBtnHour);
+    if (existingObj) {
+      // If an object with the same hour exists, update its input value
+      existingObj.input = userInput;
+    } else {
+      // If not, create a new object and add it to the data array
+      var newObj = { hour: saveBtnHour, input: userInput };
+      data.push(newObj);
+    }
+      localStorage.setItem('data',JSON.stringify(data));
   });
-
-
 
 
   // TODO: Add code to apply the past, present, or future class to each time
@@ -58,19 +65,27 @@ $(function () {
   // attribute of each time-block be used to do this?
   
   function readFromStorage() {
-    var data =  localStorage.getItem("data");
-    if (data) {
-      data = JSON.parse(data);
+    var readData =  localStorage.getItem('data');
+    if (readData) {
+      data = JSON.parse(readData);
     }
     else{
       data = [];
     }
     data.forEach(element => {
-      var hour = element.hour;
-      var userInput = element.userInput;
-      var timeBlockEl = document.getElementById(hour);
-      var userInputEl = GetTimeBlock.querySelector("textarea");
-      userInputEl.innerText = userInput.value;
+      var dataHour = element.hour;
+      var dataUserInput = element.input;
+      
+      blocksContainer.each(function () {
+        var blkHour = $(this).attr("id").split('-')[1];
+        var blkUserInputEl = $(this).find("textarea");
+        if (dataHour == blkHour) {
+           blkUserInputEl.val(dataUserInput);
+        }
+      })
+      // var timeBlockEl = document.getElementById(hour);
+      // var userInputEl = GetTimeBlock.querySelector("textarea");
+      // userInputEl.innerText = userInput.value;
     });
   }
 
