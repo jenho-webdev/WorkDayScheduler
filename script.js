@@ -66,12 +66,15 @@ $(function () {
   
   function readFromStorage() {
     var readData =  localStorage.getItem('data');
+    //check if what storaged locally is empty or not 
+    //if null, declear it as an array
     if (readData) {
       data = JSON.parse(readData);
     }
     else{
       data = [];
     }
+    
     data.forEach(element => {
       var dataHour = element.hour;
       var dataUserInput = element.input;
