@@ -94,8 +94,8 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 
   function displayTime(){
-    var today = dayjs().format("MMM DD, YYYY [at] hh:mm:ss a");
-   currentDay.text(today);
+    var today = dayjs().format("dddd, MMM DD, YYYY [at] hh:mm:ss a");
+   currentDay.text("Today is "+ today);
   }
   
 });
