@@ -20,8 +20,6 @@
 
 - [Mock-up](#mock-up)
 
-- [Wireframe](#wireframe)
-
 - [Roadmap](#roadmap)
 
 - [Contact](#contact-me)
@@ -68,10 +66,6 @@ The following animation demonstrates the application functionality:
 
 <!-- @TODO: create ticket to review/update image) -->
 ![A user clicks on slots on the color-coded calendar and edits the events.](./assets/demo.gif)
-
-## Wireframe
-
-![wireframe picture.](./assets/wireframe.jpg)
 
 ## Roadmap
 
