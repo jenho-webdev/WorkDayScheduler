@@ -66,7 +66,7 @@ Overall, this simple calendar application provides users with an easy and effici
 The following animation demonstrates the application functionality:
 
 <!-- @TODO: create ticket to review/update image) -->
-![A user clicks on slots on the color-coded calendar and edits the events.](./Assets/demo.gif)
+![A user clicks on slots on the color-coded calendar and edits the events.](./assets/demo.gif)
 
 ## Roadmap
 
