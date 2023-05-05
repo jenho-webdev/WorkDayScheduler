@@ -20,8 +20,6 @@
 
 - [Mock-up](#mock-up)
 
-- [Wireframe](#wireframe)
-
 - [Roadmap](#roadmap)
 
 - [Contact](#contact-me)
@@ -63,15 +61,12 @@ Overall, this simple calendar application provides users with an easy and effici
     WHEN I refresh the page
     THEN the saved events persist
 
+
 ## Mock Up
 The following animation demonstrates the application functionality:
 
 <!-- @TODO: create ticket to review/update image) -->
 ![A user clicks on slots on the color-coded calendar and edits the events.](./Assets/demo.gif)
-
-## Wireframe
-
-![wireframe picture.](./assets/images/wireframe.jpg)
 
 ## Roadmap
 
