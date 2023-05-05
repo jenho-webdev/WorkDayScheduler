@@ -26,6 +26,7 @@ $(function () {
     var userInput = $(this).siblings("textarea").val();
     // Check if an object with the same hour already exists in the data array
     var existingObj = data.find(obj => obj.hour === saveBtnHour);
+
     if (existingObj) {
       // If an object with the same hour exists, update its input value
       existingObj.input = userInput;
@@ -34,6 +35,7 @@ $(function () {
       var newObj = { hour: saveBtnHour, input: userInput };
       data.push(newObj);
     }
+    // wirte to the local storage and overwrite the same data array that contain saved hourly time block object.
       localStorage.setItem('data',JSON.stringify(data));
   });
 
@@ -66,12 +68,15 @@ $(function () {
   
   function readFromStorage() {
     var readData =  localStorage.getItem('data');
+    //check if what storaged locally is empty or not 
+    //if null, declear it as an array
     if (readData) {
       data = JSON.parse(readData);
     }
     else{
       data = [];
     }
+    
     data.forEach(element => {
       var dataHour = element.hour;
       var dataUserInput = element.input;
